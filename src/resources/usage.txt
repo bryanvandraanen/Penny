@@ -1,0 +1,47 @@
+Penny - "Pump and Dump" identifying system for OTC market penny stocks.
+Penny takes live OTC market data and uses a machine learning classifier to filter which stock symbols show signs of stock manipulation and stock promotion.
+Penny is engineered to identify pump and dumps on the first day of the stock promotion and price manipulation.
+
+Example usage: "java -jar penny.jar --live -mostactive"
+               "java -jar penny.jar --spoof -parallel"
+               "java -jar penny.jar --analyze 1/16/2016 BRAB JYON DAVD EMIT -csv data.csv"
+
+Usage:
+Penny can be run with a number of different major command-line arguments (--major) and combined with unique minor command-line arguments (-minor):
+
+    "--live"
+    Runs Penny on live market data configured with an existing broker (Interactive Brokers).
+    Outputs positive classified instances of stock tickers considered to be on the first day of a pump and dump stock promotion.
+        "-mostactive"
+        Scans and classifies only the top 50 most active OTC stocks based on daily dollar volume as opposed to the entire OTC market.
+        Offers significant speedup on results.
+
+        "-log <output_file>"
+        Outputs classified stock tickers to the file specified.
+
+        "-serialize"
+        Serializes all scanned stocks and their tick values to the constant database directory location (see SerializationConstants).
+
+    "--analyze <mm/dd/yyyy> <ticker1> <ticker2> <...>"
+    Analyzes previously serialized stock market data allowing for dataset expansion, and historical classification testing.
+    Loads data from the constant database directory location (see SerializationConstants) based on the date provided.
+    Takes in a variable number of stock tickers to analyze specifically.
+    If no tickers are specified, analyzes all previously serialized tickers from that day.
+        "-csv <output_file>"
+        Appends the analyzed stocks and data to the output file specified in CSV format.
+
+    "--spoof"
+    Runs Penny on simulated market data for demonstration.
+    Outputs positive classified (fake) instances of stock tickers considered to be on the first day of a pump and dump stock promotion.
+        "-parallel"
+        Delivers contrived market data asynchronously and in parallel.
+
+        "-log <output_file>"
+        Outputs classified stock tickers to the file specified.
+
+        "-serialize"
+        Serializes all scanned stocks and their tick values to the constant database directory location (see SerializationConstants).
+
+
+    "--help"
+    Displays this help menu and usage information for Penny.
