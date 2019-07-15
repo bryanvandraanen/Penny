@@ -38,6 +38,7 @@ Penny can be run with a number of different major command-line arguments (--majo
 
 `--live`
 Runs Penny on live market data configured with an existing broker (Interactive Brokers).
+*Requires a real-time level 1 OTC market data subscription to operate.*
 Outputs positive classified instances of stock tickers considered to be on the first day of a pump and dump stock promotion.
     `-mostactive`
     Scans and classifies only the top 50 most active OTC stocks based on daily dollar volume as opposed to the entire OTC market.
