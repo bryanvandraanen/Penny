@@ -57,7 +57,9 @@ public class LiveScan {
                 .withMaximumTickerLength(4).build();
 
         // Scan and request market data for the specified and filtered stock tickers.
-        StockScanner.scan(tickers, filter);
+        // StockScanner.scan(tickers, filter);
+        StockScanner.scanSequential(tickers, filter);
+        Broker.getInstance().getMarketData().waitForActiveDataToDeliver();
 
         ClassificationFilter classificationFilter = new ClassificationFilter.ClassificationFilterBuilder()
                 .withMinimumPrice(ClassificationConstants.MIN_PRICE_FILTER)
