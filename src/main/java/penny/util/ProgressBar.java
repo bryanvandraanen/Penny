@@ -109,9 +109,14 @@ public class ProgressBar {
      */
     public synchronized void display(PrintStream out) {
         if (this.displayThread == null || !this.displayThread.isAlive()) {
-            this.displayThread = new Thread(() -> out.print(this.toString() + "\r"));
+            this.displayThread = new Thread(() -> print(out, this.toString() + "\r")); // out.print(this.toString() + "\r"));
             this.displayThread.start();
         }
+    }
+
+    private void print(PrintStream out, String output) {
+        out.print(output);
+        out.flush();
     }
 
     /**

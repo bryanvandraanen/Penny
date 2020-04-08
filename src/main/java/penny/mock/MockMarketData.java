@@ -169,7 +169,7 @@ public class MockMarketData extends MarketData {
      * for the particular tick type.
      */
     private void deliver(int tickId, double value, int tickType) {
-        Broker.getInstance().getWrapper().tickPrice(tickId, tickType, value, -1);
+        Broker.getInstance().getWrapper().tickPrice(tickId, tickType, value, null);
     }
 
     /**

@@ -89,7 +89,7 @@ public class MarketData {
         Lock lock = LockManager.getInstance().getLock(tickId);
         lock.lock();
         Broker.getInstance().getClient().reqMktData(tickId, contract, TICK_STRING,
-                false /* Snapshot */, null /* MktDataOptions */);
+                false /* Snapshot */, false /* Regulatory Snapshot */, null /* MktDataOptions */);
     }
 
     /**

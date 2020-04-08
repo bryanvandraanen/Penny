@@ -25,7 +25,7 @@ public class PumpScanner {
         ScannerSubscription pumpStockSubscription =
                 pinkSheetDollarVolumeSubscription(PUMP_SCANNER_BELOW_PRICE, PUMP_SCANNER_MARKET_CAP_BELOW);
         LockManager.getInstance().getLock(scannerId).lock();
-        Broker.getInstance().getClient().reqScannerSubscription(scannerId, pumpStockSubscription, null);
+        Broker.getInstance().getClient().reqScannerSubscription(scannerId, pumpStockSubscription, null, null);
     }
 
     /**

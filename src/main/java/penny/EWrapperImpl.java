@@ -1,19 +1,10 @@
 package main.java.penny;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import com.ib.client.CommissionReport;
-import com.ib.client.Contract;
-import com.ib.client.ContractDetails;
-import com.ib.client.DeltaNeutralContract;
-import com.ib.client.EClientSocket;
-import com.ib.client.EJavaSignal;
-import com.ib.client.EReaderSignal;
-import com.ib.client.EWrapper;
-import com.ib.client.Execution;
-import com.ib.client.Order;
-import com.ib.client.OrderState;
-import com.ib.client.SoftDollarTier;
+import com.ib.client.*;
 
 import main.java.penny.concurrent.LockManager;
 import main.java.penny.constants.MarketDataConstants;
@@ -74,7 +65,7 @@ public class EWrapperImpl implements EWrapper {
      * All other parameters have no effect on the market data price.
      */
     @Override
-    public void tickPrice(int tickId, int tickType, double price, int canAutoExecute) {
+    public void tickPrice(int tickId, int tickType, double price, TickAttrib attribute) {
         if (Broker.getInstance().getMarketData().getStockTickResults().hasStockTick(tickId)) {
             Broker.getInstance().getMarketData().getStockTickResults().addTickResult(tickId, tickType, price);
 
@@ -200,7 +191,7 @@ public class EWrapperImpl implements EWrapper {
     @Override
     public void orderStatus(int orderId, String status, double filled,
                             double remaining, double avgFillPrice, int permId, int parentId,
-                            double lastFillPrice, int clientId, String whyHeld) {
+                            double lastFillPrice, int clientId, String whyHeld, double mktCapPrice) {
     }
 
     @Override
@@ -260,8 +251,8 @@ public class EWrapperImpl implements EWrapper {
                                int side, double price, int size) {
     }
     @Override
-    public void updateMktDepthL2(int tickerId, int position,
-                                 String marketMaker, int operation, int side, double price, int size) {
+    public void updateMktDepthL2(int tickerId, int position, String marketMaker,
+                                 int operation, int side, double price, int size, boolean isSmartDepth) {
     }
 
     @Override
@@ -278,9 +269,7 @@ public class EWrapperImpl implements EWrapper {
     }
 
     @Override
-    public void historicalData(int reqId, String date, double open,
-                               double high, double low, double close, int volume, int count,
-                               double WAP, boolean hasGaps) {
+    public void historicalData(int reqId, Bar bar) {
     }
 
     @Override
@@ -396,5 +385,119 @@ public class EWrapperImpl implements EWrapper {
     }
     @Override
     public void softDollarTiers(int reqId, SoftDollarTier[] tiers) {
+    }
+
+    @Override
+    public void familyCodes(FamilyCode[] familyCodes) {
+    }
+
+    @Override
+    public void symbolSamples(int reqId, ContractDescription[] contractDescriptions) {
+    }
+
+    @Override
+    public void historicalDataEnd(int reqId, String startDateStr, String endDateStr) {
+    }
+
+    @Override
+    public void mktDepthExchanges(DepthMktDataDescription[] depthMktDataDescriptions) {
+    }
+
+    @Override
+    public void tickNews(int tickerId, long timeStamp, String providerCode, String articleId, String headline, String extraData) {
+    }
+
+    @Override
+    public void smartComponents(int reqId, Map<Integer, Map.Entry<String, Character>> theMap) {
+    }
+
+    @Override
+    public void tickReqParams(int tickerId, double minTick, String bboExchange, int snapshotPermissions) {
+    }
+
+    @Override
+    public void newsProviders(NewsProvider[] newsProviders) {
+    }
+
+    @Override
+    public void newsArticle(int requestId, int articleType, String articleText) {
+    }
+
+    @Override
+    public void historicalNews(int requestId, String time, String providerCode, String articleId, String headline) {
+    }
+
+    @Override
+    public void historicalNewsEnd(int requestId, boolean hasMore) {
+    }
+
+    @Override
+    public void headTimestamp(int reqId, String headTimestamp) {
+    }
+
+    @Override
+    public void histogramData(int reqId, List<HistogramEntry> items) {
+    }
+
+    @Override
+    public void historicalDataUpdate(int reqId, Bar bar) {
+    }
+
+    @Override
+    public void rerouteMktDataReq(int reqId, int conId, String exchange) {
+    }
+
+    @Override
+    public void rerouteMktDepthReq(int reqId, int conId, String exchange) {
+    }
+
+    @Override
+    public void marketRule(int marketRuleId, PriceIncrement[] priceIncrements) {
+    }
+
+    @Override
+    public void pnl(int reqId, double dailyPnL, double unrealizedPnL, double realizedPnL) {
+    }
+
+    @Override
+    public void pnlSingle(int reqId, int pos, double dailyPnL, double unrealizedPnL, double realizedPnL, double value) {
+    }
+
+    @Override
+    public void historicalTicks(int reqId, List<HistoricalTick> ticks, boolean done) {
+    }
+
+    @Override
+    public void historicalTicksBidAsk(int reqId, List<HistoricalTickBidAsk> ticks, boolean done) {
+    }
+
+    @Override
+    public void historicalTicksLast(int reqId, List<HistoricalTickLast> ticks, boolean done) {
+    }
+
+    @Override
+    public void tickByTickAllLast(int reqId, int tickType, long time, double price, int size,
+                                  TickAttribLast tickAttribLast, String exchange, String specialConditions) {
+    }
+
+    @Override
+    public void tickByTickBidAsk(int reqId, long time, double bidPrice, double askPrice, int bidSize, int askSize,
+                                 TickAttribBidAsk tickAttribBidAsk) {
+    }
+
+    @Override
+    public void tickByTickMidPoint(int reqId, long time, double midPoint) {
+    }
+
+    @Override
+    public void orderBound(long orderId, int apiClientId, int apiOrderId) {
+    }
+
+    @Override
+    public void completedOrder(Contract contract, Order order, OrderState orderState) {
+    }
+
+    @Override
+    public void completedOrdersEnd() {
     }
 }
