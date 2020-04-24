@@ -38,7 +38,7 @@ public class ClassificationFilter {
      * and returns a new collection of the same StockTicks that satisfy the predicate.
      *
      * @param ticks The StockTicks to filter following the predicate defined in this ClassificationFilter
-     * @return A new List of StockTicks fromt he provided stock ticks that satisfied the predicate
+     * @return A new List of StockTicks from the provided stock ticks that satisfied the predicate
      */
     public List<StockTick> filter(Iterable<StockTick> ticks) {
         return filter(ticks.iterator());
