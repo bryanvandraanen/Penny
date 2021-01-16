@@ -23,7 +23,11 @@ public class PumpScanner {
      */
     public static void requestScanner(int scannerId) {
         ScannerSubscription pumpStockSubscription =
-                pinkSheetDollarVolumeSubscription(PUMP_SCANNER_BELOW_PRICE, PUMP_SCANNER_MARKET_CAP_BELOW);
+                pinkSheetDollarVolumeSubscription(
+                        PUMP_SCANNER_BELOW_PRICE,
+                        PUMP_SCANNER_ABOVE_PRICE,
+                        PUMP_SCANNER_MARKET_CAP_BELOW
+                );
         LockManager.getInstance().getLock(scannerId).lock();
         Broker.getInstance().getClient().reqScannerSubscription(scannerId, pumpStockSubscription, null, null);
     }
@@ -39,13 +43,18 @@ public class PumpScanner {
      * @return A ScannerSubscription corresponding to the TWS Advanced Market StockScanner retrieving stocks in the
      *         OTC Market with the most active dollar volume.
      */
-    public static ScannerSubscription pinkSheetDollarVolumeSubscription(double belowPrice, double marketCapBelow) {
+    public static ScannerSubscription pinkSheetDollarVolumeSubscription(
+        double belowPrice,
+        double abovePrice,
+        double marketCapBelow
+    ) {
         ScannerSubscription scannerSub = new ScannerSubscription();
         scannerSub.scanCode(PUMP_SCANNER_SCAN_CODE);
         scannerSub.instrument(SECURITY_TYPE);
         scannerSub.locationCode(PINK_SHEET_LOCATION_CODE);
         scannerSub.marketCapBelow(marketCapBelow);
         scannerSub.belowPrice(belowPrice);
+        scannerSub.abovePrice(abovePrice);
 
         return scannerSub;
     }

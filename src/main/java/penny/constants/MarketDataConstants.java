@@ -19,7 +19,7 @@ public class MarketDataConstants {
     public static final int MAX_CONCURRENT_MARKET_DATA_REQUESTS = 50;
 
     /** Default market data request timeout in milliseconds */
-    public static final int MARKET_DATA_TIMEOUT_MILLIS = 5000;
+    public static final int MARKET_DATA_TIMEOUT_MILLIS = 10000;
 
     /** Error codes to unlock locks associated market data requests */
     public static final Set<Integer> ERROR_CODE_UNLOCKS = initializeErrorCodeUnlocks();

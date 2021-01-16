@@ -42,7 +42,7 @@ public class LiveScan {
 
         // For the live scan, do not timeout market data requests because should be able to get data for all tickers
         // in a reasonable period of time
-        Broker.getInstance().getMarketData().shutdownTimeoutProcess();
+        // Broker.getInstance().getMarketData().shutdownTimeoutProcess();
 
         // Configure the tickers to scan depending on whether only the most active stock tickers are wanted
         // or the entire OTC Market
@@ -58,7 +58,8 @@ public class LiveScan {
             tickers = OTCTickersReader.getOTCTickers();
         }
         StockScannerFilter filter = new StockScannerFilter.StockScannerFilterBuilder()
-                .withMaximumTickerLength(4).build();
+                .withMaximumTickerLength(4)
+                .build();
 
         // Scan and request market data for the specified and filtered stock tickers.
         // StockScanner.scan(tickers, filter);
