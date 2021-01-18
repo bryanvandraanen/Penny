@@ -78,7 +78,7 @@ public class LiveScan {
 
         // Resume file output echo now that we have results
         FileOutputEcho.getInstance().resumeFileOutputEcho();
-        CommandUtil.output(results, true /* Only positive results */);
+        CommandUtil.output(results, false /* Only positive results */);
 
         FileOutputEcho.getInstance().closeOutputFiles();
 

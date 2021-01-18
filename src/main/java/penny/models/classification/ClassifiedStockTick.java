@@ -45,7 +45,7 @@ public class ClassifiedStockTick {
 
         builder.append(this.tick.getTicker());
         builder.append(": ");
-        builder.append(this.classification.getPercentage());
+        builder.append(String.format("%.5f", this.classification.getPercentage()));
 
         return builder.toString();
     }
