@@ -19,7 +19,7 @@ public class ScannerConstants {
     public static final double PUMP_SCANNER_BELOW_PRICE = 10.00;
 
     /** For the most active dollar volume scanner subscription, the minimum trading price to consider */
-    public static final double PUMP_SCANNER_ABOVE_PRICE = 0.1;
+    public static final double PUMP_SCANNER_ABOVE_PRICE = 0.4;
 
     /** For the most active dollar volume scanner subscription, the maximum market capitalization of stocks to consider */
     public static final double PUMP_SCANNER_MARKET_CAP_BELOW = 100000000;
