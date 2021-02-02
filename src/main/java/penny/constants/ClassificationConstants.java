@@ -11,7 +11,7 @@ public class ClassificationConstants {
     public static double CLASSIFICATION_THRESHOLD = 0.5;
 
     /** The minimum trading price required to be eligible to classify a particular stock tick */
-    public static double MIN_PRICE_FILTER = 0.1;
+    public static double MIN_PRICE_FILTER = 0.4;
 
     /** The minimum dollar volume required to be eligible to classify a particular stock tick */
     public static double MIN_VOLUME_USD_FILTER = 10000;
